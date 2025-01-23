@@ -1,0 +1,33 @@
+-- Tabel untuk admin
+CREATE TABLE admin (
+    id_admin INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nama_lengkap VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk user
+CREATE TABLE users (
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nama_lengkap VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk surat
+CREATE TABLE surat (
+    id_surat INT PRIMARY KEY AUTO_INCREMENT,
+    nomor_surat VARCHAR(50) NOT NULL,
+    judul_surat VARCHAR(200) NOT NULL,
+    isi_surat TEXT,
+    tanggal_surat DATE NOT NULL,
+    file_surat VARCHAR(255), -- Untuk menyimpan path file PDF
+    id_admin INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_admin) REFERENCES admin(id_admin)
+)
